@@ -234,16 +234,62 @@ tooltip label {
     -gtk-icon-effect: dim;
 }
 
-/* -- Notification -- */
+/* -- Notification badge -- */
 #custom-notification {
-    color: @fg;
-    padding: 0 14px 0 8px;
-    font-size: 15px;
+    color: @fg-dim;
+    padding: 0 10px;
+    font-size: 16px;
     transition: all 0.3s ease;
+}
+
+#custom-notification.unread {
+    color: @accent;
+    animation: glow-cyan 1.5s ease-in-out infinite alternate;
+}
+
+#custom-notification.dnd {
+    color: @red;
+}
+
+#custom-notification.none {
+    color: @fg-dim;
 }
 
 #custom-notification:hover {
     color: @accent;
+}
+
+/* -- Power button -- */
+#custom-power {
+    color: @red;
+    padding: 0 14px 0 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+#custom-power:hover {
+    text-shadow: 0 0 10px alpha(@red, 0.6);
+}
+
+/* -- Claude Code indicator -- */
+#custom-claude {
+    padding: 0 10px;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+#custom-claude.idle {
+    color: @fg-dim;
+}
+
+#custom-claude.active {
+    color: @accent;
+    animation: glow-cyan 2s ease-in-out infinite alternate;
+}
+
+#custom-claude.thinking {
+    color: @magenta;
+    animation: pulse-think 0.8s ease-in-out infinite alternate;
 }
 
 /* ========================================
@@ -288,4 +334,9 @@ tooltip label {
 @keyframes glow-cyan {
     from { text-shadow: 0 0 2px alpha(@accent, 0.2); }
     to   { text-shadow: 0 0 12px alpha(@accent, 0.8); }
+}
+
+@keyframes pulse-think {
+    from { text-shadow: 0 0 4px alpha(@magenta, 0.3); opacity: 1; }
+    to   { text-shadow: 0 0 14px alpha(@magenta, 0.9); opacity: 0.7; }
 }
