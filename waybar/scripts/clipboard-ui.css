@@ -1,0 +1,170 @@
+/* ========================================
+   T E C H  H U D  —  Clipboard Manager
+   ======================================== */
+
+.clipboard-window {
+    background-color: #0a0e14;
+    border-left: 1px solid #1b2838;
+    border-bottom: 1px solid #1b2838;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    color: #b0bec5;
+}
+
+/* -- Header -- */
+.header {
+    padding: 12px 14px 8px 14px;
+    border-bottom: 1px solid #1b2838;
+}
+
+.header-title {
+    color: #00e5ff;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.header-count {
+    color: #455a64;
+    font-size: 11px;
+}
+
+.clear-all-btn {
+    background: rgba(255, 23, 68, 0.1);
+    color: #ff1744;
+    border: 1px solid rgba(255, 23, 68, 0.25);
+    border-radius: 0px;
+    padding: 4px 12px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.clear-all-btn:hover {
+    background: rgba(255, 23, 68, 0.25);
+}
+
+/* -- Search -- */
+.search-entry {
+    background: #0d1117;
+    color: #00e5ff;
+    border: none;
+    border-bottom: 2px solid #1b2838;
+    border-radius: 0px;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.search-entry:focus {
+    border-bottom-color: #00e5ff;
+}
+
+/* -- List -- */
+.entries-list {
+    background-color: transparent;
+}
+
+.entries-list row {
+    background-color: transparent;
+    padding: 0;
+    outline: none;
+}
+
+.entries-list row:hover {
+    background-color: transparent;
+}
+
+/* -- Section labels -- */
+.section-label {
+    color: #455a64;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 10px 14px 4px 14px;
+}
+
+/* -- Entry row -- */
+.entry-row {
+    padding: 6px 10px;
+    border-left: 3px solid transparent;
+    min-height: 32px;
+}
+
+.entry-row:hover {
+    background-color: rgba(0, 229, 255, 0.04);
+}
+
+.entry-row.pinned {
+    border-left-color: #d500f9;
+    background-color: rgba(213, 0, 249, 0.04);
+}
+
+/* -- Entry content -- */
+.entry-icon {
+    color: #455a64;
+    font-size: 14px;
+    min-width: 20px;
+}
+
+.entry-text {
+    color: #b0bec5;
+    font-size: 12px;
+}
+
+.entry-text.binary {
+    color: #455a64;
+    font-style: italic;
+}
+
+/* -- Action buttons -- */
+.act-copy, .act-pin, .act-pin-active, .act-delete {
+    background: transparent;
+    border: none;
+    border-radius: 0px;
+    color: #455a64;
+    font-size: 14px;
+    min-width: 28px;
+    min-height: 28px;
+    padding: 2px;
+}
+
+.act-copy:hover {
+    color: #00e5ff;
+}
+
+.act-pin:hover {
+    color: #d500f9;
+}
+
+.act-pin-active {
+    color: #d500f9;
+}
+
+.act-pin-active:hover {
+    color: #d500f9;
+}
+
+.act-delete:hover {
+    color: #ff1744;
+}
+
+/* -- Scrollbar -- */
+scrollbar {
+    background: transparent;
+}
+
+scrollbar slider {
+    background: #1b2838;
+    border-radius: 0px;
+    min-width: 4px;
+}
+
+/* -- Tooltip -- */
+tooltip {
+    background: #0d1117;
+    color: #b0bec5;
+    border: 1px solid #1b2838;
+    border-radius: 0px;
+}

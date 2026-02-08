@@ -176,7 +176,7 @@
     "custom/clipboard": {
         "format": "󰅇",
         "tooltip-format": "Clipboard",
-        "on-click": "~/.config/waybar/scripts/clipboard-menu.sh"
+        "on-click": "~/.config/waybar/scripts/clipboard-ui.py"
     },
 
     "custom/power": {
