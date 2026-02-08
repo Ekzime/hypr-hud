@@ -1,0 +1,78 @@
+/* ========================================
+   T E C H  H U D  —  Power Menu
+   ======================================== */
+
+.power-window {
+    background-color: #0a0e14;
+    border-left: 1px solid #1b2838;
+    border-bottom: 1px solid #1b2838;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    color: #b0bec5;
+}
+
+.header-title {
+    color: #ff1744;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    padding: 12px 16px 8px 16px;
+    border-bottom: 1px solid #1b2838;
+}
+
+/* -- Buttons -- */
+.power-btn {
+    background: transparent;
+    border: none;
+    border-left: 3px solid transparent;
+    border-radius: 0px;
+    padding: 10px 16px;
+    min-width: 200px;
+}
+
+.power-btn:hover {
+    background-color: rgba(0, 229, 255, 0.04);
+    border-left: 3px solid #00e5ff;
+}
+
+.power-btn.shutdown:hover {
+    background-color: rgba(255, 23, 68, 0.06);
+    border-left-color: #ff1744;
+}
+
+.power-btn.reboot:hover {
+    background-color: rgba(0, 229, 255, 0.06);
+    border-left-color: #00e5ff;
+}
+
+.power-btn.suspend:hover {
+    background-color: rgba(255, 215, 64, 0.06);
+    border-left-color: #ffd740;
+}
+
+.power-btn.logout:hover {
+    background-color: rgba(255, 145, 0, 0.06);
+    border-left-color: #ff9100;
+}
+
+/* -- Icon & Label -- */
+.power-icon {
+    font-size: 16px;
+    color: #455a64;
+    min-width: 24px;
+}
+
+.power-btn:hover .power-icon {
+    color: #b0bec5;
+}
+
+.power-label {
+    color: #b0bec5;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.power-btn.shutdown:hover .power-icon { color: #ff1744; }
+.power-btn.reboot:hover .power-icon { color: #00e5ff; }
+.power-btn.suspend:hover .power-icon { color: #ffd740; }
+.power-btn.logout:hover .power-icon { color: #ff9100; }
