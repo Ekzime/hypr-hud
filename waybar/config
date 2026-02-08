@@ -176,7 +176,7 @@
     "custom/clipboard": {
         "format": "󰅇",
         "tooltip-format": "Clipboard",
-        "on-click": "cliphist list | wofi --dmenu --prompt 'CLIPBOARD' --width 500 --height 380 | cliphist decode | wl-copy"
+        "on-click": "~/.config/waybar/scripts/clipboard-menu.sh"
     },
 
     "custom/power": {
