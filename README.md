@@ -6,9 +6,11 @@ Dark background, cyan/color-coded indicators, glow animations, sharp edges.
 
 ## Preview
 
-```
-⬡  1  2  3  4  5  // kitty     󰂜  Sun 08 Feb  22:03:45     CPU 4%  RAM 18%  TEMP 20°  │  󰃠 73%  󰕾 100%  󰖩 93%  │  󰌌 EN  󰂄 94%  󰅇  ⏻
-```
+![Waybar with terminal](screenshots/bar-neofetch.png)
+
+![Clipboard Manager](screenshots/clipboard-manager.png)
+
+![Power Menu](screenshots/power-menu.png)
 
 ## Dependencies
 
@@ -58,11 +60,10 @@ waybar/
 ├── config                          # Bar modules and settings
 ├── style.css                       # Tech HUD theme (GTK CSS)
 └── scripts/
-    ├── power-menu.sh               # Power menu (shutdown/reboot/suspend/logout)
-    ├── power-menu.css              # Power menu styling
+    ├── power-ui.py                 # GTK3 power menu (shutdown/reboot/suspend/logout)
+    ├── power-ui.css                # Power menu styling
     ├── clipboard-ui.py             # GTK3 clipboard manager with pin/delete
     ├── clipboard-ui.css            # Clipboard manager styling
-    ├── clipboard-menu.sh           # Fallback wofi clipboard
     └── notification-count.sh       # Notification badge with unread count
 wofi/
 ├── config                          # Wofi launcher settings
@@ -89,10 +90,11 @@ swaync/
 - Toggle open/close from waybar button
 - Layer-shell popup anchored to top-right
 
-**Power Menu**
-- Wofi dropdown: Shutdown / Reboot / Suspend / Logout
-- No search bar, all options visible
-- Anchored top-right under waybar
+**Power Menu** (custom GTK3 app)
+- Shutdown / Reboot / Suspend / Logout
+- Color-coded hover states per action
+- Toggle open/close from waybar button
+- Layer-shell popup anchored to top-right
 
 **Wofi Launcher**
 - Matching Tech HUD dark theme
