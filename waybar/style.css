@@ -259,6 +259,19 @@ tooltip label {
     color: @accent;
 }
 
+/* -- Clipboard button -- */
+#custom-clipboard {
+    color: @fg-dim;
+    padding: 0 10px;
+    font-size: 17px;
+    transition: all 0.3s ease;
+}
+
+#custom-clipboard:hover {
+    color: @accent;
+    text-shadow: 0 0 8px alpha(@accent, 0.5);
+}
+
 /* -- Power button (isolated) -- */
 #custom-power {
     color: @red;

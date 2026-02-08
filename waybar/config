@@ -27,6 +27,7 @@
         "custom/sep",
         "hyprland/language",
         "battery",
+        "custom/clipboard",
         "custom/power"
     ],
 
@@ -172,10 +173,15 @@
         "escape": true
     },
 
+    "custom/clipboard": {
+        "format": "󰅇",
+        "tooltip-format": "Clipboard",
+        "on-click": "cliphist list | wofi --dmenu --prompt 'CLIPBOARD' --width 500 --height 380 | cliphist decode | wl-copy"
+    },
+
     "custom/power": {
         "format": "⏻",
         "tooltip-format": "Power Menu",
         "on-click": "~/.config/waybar/scripts/power-menu.sh"
-    },
-
+    }
 }
