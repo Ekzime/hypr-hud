@@ -1,0 +1,99 @@
+/* ========================================
+   T E C H  H U D  —  Wofi Launcher
+   ======================================== */
+
+/* -- Window -- */
+window {
+    margin: 0px;
+    background-color: rgba(10, 14, 20, 0.95);
+    border: 1px solid #1b2838;
+    border-radius: 0px;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 14px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* -- Search input -- */
+#input {
+    margin: 12px 12px 6px 12px;
+    padding: 10px 14px;
+    background-color: #0d1117;
+    color: #00e5ff;
+    border: 1px solid #1b2838;
+    border-bottom: 2px solid #00e5ff;
+    border-radius: 0px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#input:focus {
+    border-bottom: 2px solid #00e5ff;
+    box-shadow: 0 2px 12px rgba(0, 229, 255, 0.15);
+}
+
+/* -- Containers -- */
+#inner-box {
+    margin: 4px 8px;
+    padding: 0;
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 0;
+    padding: 4px;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0;
+    background-color: transparent;
+}
+
+/* -- List entries -- */
+#entry {
+    padding: 8px 12px;
+    margin: 1px 4px;
+    border-radius: 0px;
+    border-left: 3px solid transparent;
+    background-color: transparent;
+    transition: all 0.15s ease;
+}
+
+#entry:selected {
+    background-color: rgba(0, 229, 255, 0.06);
+    border-left: 3px solid #00e5ff;
+}
+
+#entry:hover {
+    background-color: rgba(0, 229, 255, 0.04);
+}
+
+/* -- Text -- */
+#text {
+    margin: 2px 8px;
+    color: #b0bec5;
+    font-size: 13.5px;
+}
+
+#entry:selected #text {
+    color: #00e5ff;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+}
+
+/* -- App icons -- */
+#img {
+    margin-right: 10px;
+}
+
+/* -- Scrollbar -- */
+scrollbar {
+    opacity: 0;
+}
+
+scrollbar slider {
+    background-color: #1b2838;
+    border-radius: 0px;
+    min-width: 4px;
+}

@@ -1,0 +1,13 @@
+mode=drun
+show=drun
+width=500
+height=380
+location=center
+allow_images=true
+allow_markup=true
+columns=1
+insensitive=true
+no_actions=true
+prompt=SEARCH
+image_size=28
+stylesheet=/home/ekz/.config/wofi/style.css
