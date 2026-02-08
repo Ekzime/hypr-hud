@@ -234,10 +234,10 @@ tooltip label {
     -gtk-icon-effect: dim;
 }
 
-/* -- Notification badge -- */
+/* -- Notification badge (next to clock) -- */
 #custom-notification {
     color: @fg-dim;
-    padding: 0 10px;
+    padding: 0 14px 0 0;
     font-size: 16px;
     transition: all 0.3s ease;
 }
@@ -259,37 +259,19 @@ tooltip label {
     color: @accent;
 }
 
-/* -- Power button -- */
+/* -- Power button (isolated) -- */
 #custom-power {
     color: @red;
-    padding: 0 14px 0 8px;
-    font-size: 16px;
+    padding: 0 16px;
+    margin-left: 4px;
+    font-size: 17px;
+    border-left: 1px solid alpha(@red, 0.25);
     transition: all 0.3s ease;
 }
 
 #custom-power:hover {
-    text-shadow: 0 0 10px alpha(@red, 0.6);
-}
-
-/* -- Claude Code indicator -- */
-#custom-claude {
-    padding: 0 10px;
-    font-size: 13px;
-    transition: all 0.3s ease;
-}
-
-#custom-claude.idle {
-    color: @fg-dim;
-}
-
-#custom-claude.active {
-    color: @accent;
-    animation: glow-cyan 2s ease-in-out infinite alternate;
-}
-
-#custom-claude.thinking {
-    color: @magenta;
-    animation: pulse-think 0.8s ease-in-out infinite alternate;
+    background: alpha(@red, 0.08);
+    text-shadow: 0 0 12px alpha(@red, 0.6);
 }
 
 /* ========================================
