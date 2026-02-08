@@ -1,0 +1,268 @@
+/* ========================================
+   T E C H  H U D  —  Waybar Theme
+   Sci-fi control panel aesthetic
+   ======================================== */
+
+@define-color bg        #0a0e14;
+@define-color bg-mod    #0d1117;
+@define-color border    #1b2838;
+@define-color fg        #b0bec5;
+@define-color fg-dim    #455a64;
+@define-color accent    #00e5ff;
+@define-color green     #00e676;
+@define-color yellow    #ffd740;
+@define-color orange    #ff9100;
+@define-color red       #ff1744;
+@define-color magenta   #d500f9;
+@define-color blue      #448aff;
+
+/* -- Reset -- */
+* {
+    font-family: "JetBrainsMono Nerd Font", "Noto Sans Mono", monospace;
+    font-size: 13.5px;
+    border: none;
+    min-height: 0;
+}
+
+/* -- Bar frame -- */
+window#waybar {
+    background: @bg;
+    color: @fg;
+    border-top: 1px solid @border;
+}
+
+tooltip {
+    background: @bg-mod;
+    color: @fg;
+    border: 1px solid @accent;
+    border-radius: 0;
+    padding: 6px;
+}
+
+tooltip label {
+    color: @fg;
+}
+
+/* ========================================
+   LEFT — Identity & Navigation
+   ======================================== */
+
+#custom-logo {
+    color: @accent;
+    font-size: 16px;
+    padding: 0 16px 0 14px;
+    letter-spacing: 2px;
+}
+
+/* -- Workspaces: numbered HUD tabs -- */
+#workspaces {
+    padding: 0 4px;
+}
+
+#workspaces button {
+    all: unset;
+    color: @fg-dim;
+    font-size: 13px;
+    padding: 2px 10px;
+    margin: 4px 2px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    color: @fg;
+    background: alpha(@accent, 0.05);
+    border-bottom: 2px solid alpha(@accent, 0.3);
+}
+
+#workspaces button.active {
+    color: @accent;
+    border-bottom: 2px solid @accent;
+    text-shadow: 0 0 8px alpha(@accent, 0.4);
+}
+
+#workspaces button.empty {
+    color: alpha(@fg-dim, 0.25);
+}
+
+/* -- Window name -- */
+#window {
+    color: @fg-dim;
+    font-size: 12px;
+    padding: 0 14px;
+    font-style: italic;
+}
+
+/* ========================================
+   CENTER — Clock
+   ======================================== */
+
+#clock {
+    color: @fg;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    padding: 0 20px;
+    transition: all 0.3s ease;
+}
+
+#clock:hover {
+    color: @accent;
+    text-shadow: 0 0 6px alpha(@accent, 0.3);
+}
+
+/* ========================================
+   RIGHT — System indicators
+   ======================================== */
+
+/* -- Separator -- */
+#custom-sep {
+    color: @border;
+    padding: 0 6px;
+    font-size: 14px;
+}
+
+/* -- Hardware telemetry -- */
+#cpu {
+    color: @accent;
+    padding: 0 8px;
+    transition: all 0.3s ease;
+}
+
+#memory {
+    color: @magenta;
+    padding: 0 8px;
+    transition: all 0.3s ease;
+}
+
+#temperature {
+    color: @green;
+    padding: 0 8px;
+    transition: all 0.3s ease;
+}
+
+#temperature.critical {
+    color: @red;
+    animation: pulse 0.6s ease-in-out infinite alternate;
+}
+
+/* -- Device controls -- */
+#backlight {
+    color: @yellow;
+    padding: 0 8px;
+    transition: all 0.3s ease;
+}
+
+#pulseaudio {
+    color: @green;
+    padding: 0 8px;
+    transition: all 0.3s ease;
+}
+
+#pulseaudio.muted {
+    color: @fg-dim;
+    text-decoration: line-through;
+}
+
+#bluetooth {
+    color: @blue;
+    padding: 0 8px;
+    transition: all 0.3s ease;
+}
+
+#bluetooth.off {
+    color: @fg-dim;
+}
+
+#network {
+    color: @green;
+    padding: 0 8px;
+    transition: all 0.3s ease;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+/* -- Language -- */
+#language {
+    color: @orange;
+    padding: 0 6px;
+    font-weight: bold;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+/* -- Battery: color-coded by state -- */
+#battery {
+    color: @green;
+    padding: 0 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#battery.charging {
+    color: @accent;
+}
+
+#battery.warning:not(.charging) {
+    color: @yellow;
+}
+
+#battery.critical:not(.charging) {
+    color: @red;
+    animation: pulse 0.5s ease-in-out infinite alternate;
+}
+
+/* -- MPRIS -- */
+#mpris {
+    color: @magenta;
+    padding: 0 12px;
+    font-size: 12px;
+    font-style: italic;
+    transition: all 0.3s ease;
+}
+
+/* -- Tray -- */
+#tray {
+    padding: 0 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+/* -- Notification -- */
+#custom-notification {
+    color: @fg;
+    padding: 0 14px 0 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+#custom-notification:hover {
+    color: @accent;
+}
+
+/* ========================================
+   HOVER — Global glow
+   ======================================== */
+
+#cpu:hover { text-shadow: 0 0 6px alpha(@accent, 0.5); }
+#memory:hover { text-shadow: 0 0 6px alpha(@magenta, 0.5); }
+#temperature:hover { text-shadow: 0 0 6px alpha(@green, 0.5); }
+#backlight:hover { text-shadow: 0 0 6px alpha(@yellow, 0.5); }
+#pulseaudio:hover { text-shadow: 0 0 6px alpha(@green, 0.5); }
+#bluetooth:hover { text-shadow: 0 0 6px alpha(@blue, 0.5); }
+#network:hover { text-shadow: 0 0 6px alpha(@green, 0.5); }
+#battery:hover { text-shadow: 0 0 6px alpha(@green, 0.5); }
+#language:hover { text-shadow: 0 0 6px alpha(@orange, 0.5); }
+#mpris:hover { text-shadow: 0 0 6px alpha(@magenta, 0.5); }
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes pulse {
+    from { opacity: 1; }
+    to   { opacity: 0.3; }
+}
