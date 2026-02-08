@@ -52,6 +52,14 @@ tooltip label {
     font-size: 18px;
     padding: 0 18px 0 16px;
     letter-spacing: 2px;
+    border-right: 1px solid alpha(@accent, 0.25);
+    animation: glow-cyan 3s ease-in-out infinite alternate;
+    transition: all 0.3s ease;
+}
+
+#custom-logo:hover {
+    background: alpha(@accent, 0.08);
+    text-shadow: 0 0 12px alpha(@accent, 0.7);
 }
 
 /* -- Workspaces: numbered HUD tabs -- */

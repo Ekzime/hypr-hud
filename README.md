@@ -6,9 +6,13 @@ Dark background, cyan/color-coded indicators, glow animations, sharp edges.
 
 ## Preview
 
-![Waybar with terminal](screenshots/bar-neofetch.png)
+![Waybar](screenshots/bar.png)
 
-![Clipboard Manager](screenshots/clipboard-manager.png)
+![App Launcher](screenshots/launcher.png)
+
+![Notifications](screenshots/notifications.png)
+
+![Clipboard Manager](screenshots/clipboard.png)
 
 ![Power Menu](screenshots/power-menu.png)
 
@@ -60,6 +64,8 @@ waybar/
 ├── config                          # Bar modules and settings
 ├── style.css                       # Tech HUD theme (GTK CSS)
 └── scripts/
+    ├── launcher-ui.py              # GTK3 app launcher with pin support
+    ├── launcher-ui.css             # App launcher styling
     ├── power-ui.py                 # GTK3 power menu (shutdown/reboot/suspend/logout)
     ├── power-ui.css                # Power menu styling
     ├── clipboard-ui.py             # GTK3 clipboard manager with pin/delete
@@ -81,6 +87,12 @@ swaync/
 - Notification badge with live unread count
 - Workspaces with active indicator underline
 - Active window class display
+
+**App Launcher** (custom GTK3 app)
+- Reads .desktop files, shows icons + names
+- Pin/unpin favorite apps (persistent)
+- Search/filter
+- Toggle open/close from waybar hexagon button
 
 **Clipboard Manager** (custom GTK3 app)
 - Pin/unpin entries (persistent across sessions)

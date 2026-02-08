@@ -33,7 +33,7 @@
 
 /* -- Search -- */
 .lnc-search {
-    background: #0d1117;
+    background-color: #0d1117;
     background-image: none;
     color: #00e5ff;
     border: none;
@@ -49,6 +49,16 @@
 .lnc-search:focus {
     border-bottom-color: #00e5ff;
     box-shadow: none;
+    background-image: none;
+}
+
+/* -- Section labels -- */
+.lnc-section {
+    color: #455a64;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 10px 14px 4px 14px;
 }
 
 /* -- List -- */
@@ -61,7 +71,6 @@
     background-color: transparent;
     background-image: none;
     padding: 0;
-    outline: none;
     border: none;
 }
 
@@ -70,14 +79,23 @@
     background-image: none;
 }
 
+/* -- Entry wrapper -- */
+.lnc-entry {
+    border-left: 3px solid transparent;
+}
+
+.lnc-entry.pinned {
+    border-left-color: #d500f9;
+    background-color: rgba(213, 0, 249, 0.04);
+}
+
 /* -- App button -- */
 .lnc-btn {
-    background: transparent;
+    background-color: transparent;
     background-image: none;
     box-shadow: none;
     border: none;
     border-radius: 0px;
-    border-left: 3px solid transparent;
     padding: 0;
 }
 
@@ -85,7 +103,6 @@
     background-color: rgba(0, 229, 255, 0.06);
     background-image: none;
     box-shadow: none;
-    border-left-color: #00e5ff;
 }
 
 .lnc-btn:active {
@@ -122,26 +139,53 @@
     color: #e0e0e0;
 }
 
-/* -- Arrow -- */
-.lnc-arrow {
-    color: transparent;
-    font-size: 16px;
-    font-weight: bold;
+/* -- Pin buttons -- */
+.lnc-pin, .lnc-pin-active {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+    color: #455a64;
+    font-size: 14px;
+    min-width: 28px;
+    min-height: 28px;
+    padding: 2px;
 }
 
-.lnc-btn:hover .lnc-arrow {
-    color: #00e5ff;
+.lnc-pin:hover {
+    color: #d500f9;
+    background-image: none;
+    box-shadow: none;
+}
+
+.lnc-pin-active {
+    color: #d500f9;
+}
+
+.lnc-pin-active:hover {
+    color: #d500f9;
+    background-image: none;
+    box-shadow: none;
 }
 
 /* -- Scrollbar -- */
 scrollbar {
-    background: transparent;
+    background-color: transparent;
     background-image: none;
 }
 
 scrollbar slider {
-    background: #1b2838;
+    background-color: #1b2838;
     background-image: none;
     border-radius: 0px;
     min-width: 4px;
+}
+
+/* -- Tooltip -- */
+tooltip {
+    background-color: #0d1117;
+    color: #b0bec5;
+    border: 1px solid #1b2838;
+    border-radius: 0px;
 }

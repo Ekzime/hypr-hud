@@ -6,13 +6,15 @@ import subprocess
 import os
 import signal
 import configparser
+import json
 
 gi.require_version("Gtk", "3.0")
 gi.require_version("GtkLayerShell", "0.1")
-from gi.repository import Gtk, Gdk, GtkLayerShell, GLib, Pango, Gio
+from gi.repository import Gtk, Gdk, GtkLayerShell, GLib, Pango
 
 CSS_FILE = os.path.expanduser("~/.config/waybar/scripts/launcher-ui.css")
 PID_FILE = "/tmp/launcher-ui.pid"
+PINS_FILE = os.path.expanduser("~/.cache/launcher-pins.json")
 
 APP_DIRS = [
     "/usr/share/applications",
@@ -21,8 +23,21 @@ APP_DIRS = [
 ]
 
 
+def load_pins():
+    try:
+        with open(PINS_FILE, "r") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+
+def save_pins(pins):
+    os.makedirs(os.path.dirname(PINS_FILE), exist_ok=True)
+    with open(PINS_FILE, "w") as f:
+        json.dump(pins, f)
+
+
 def load_desktop_entries():
-    """Parse .desktop files and return list of apps."""
     apps = []
     seen = set()
 
@@ -54,14 +69,12 @@ def load_desktop_entries():
                 keywords = entry.get("Keywords", "")
                 comment = entry.get("Comment", "")
 
-                # Clean exec: remove %f %u %F %U etc.
                 exec_clean = exec_cmd
                 for token in ["%f", "%F", "%u", "%U", "%d", "%D", "%n", "%N",
                               "%i", "%c", "%k", "%v", "%m"]:
                     exec_clean = exec_clean.replace(token, "")
                 exec_clean = exec_clean.strip()
 
-                # Build search string
                 search_str = " ".join([
                     name, generic, keywords, comment, fname
                 ]).lower()
@@ -100,6 +113,7 @@ class AppLauncher(Gtk.Window):
 
         self._load_css()
         self.apps = load_desktop_entries()
+        self.pins = load_pins()
         self.icon_theme = Gtk.IconTheme.get_default()
         self._build_ui()
         self.connect("key-press-event", self._on_key)
@@ -154,58 +168,99 @@ class AppLauncher(Gtk.Window):
         scroll.add(self.list_box)
         main_box.pack_start(scroll, True, True, 0)
 
-        self._populate(self.apps)
+        self._populate()
 
         # Don't auto-focus search
         self.search_entry.set_can_focus(True)
         self.list_box.set_can_focus(True)
         GLib.idle_add(lambda: self.list_box.grab_focus())
 
-    def _populate(self, apps):
+    def _populate(self, filter_text=""):
         for child in self.list_box.get_children():
             self.list_box.remove(child)
 
-        for app in apps:
-            self.list_box.add(self._make_row(app))
+        ft = filter_text.lower()
+        pinned = [a for a in self.apps if a["file"] in self.pins]
+        unpinned = [a for a in self.apps if a["file"] not in self.pins]
+
+        if pinned:
+            self._add_section_label("  PINNED")
+            for app in pinned:
+                if ft and ft not in app["search"]:
+                    continue
+                self.list_box.add(self._make_row(app, True))
+
+        self._add_section_label("  ALL APPS")
+        for app in unpinned:
+            if ft and ft not in app["search"]:
+                continue
+            self.list_box.add(self._make_row(app, False))
 
         self.list_box.show_all()
 
-    def _make_row(self, app):
+    def _add_section_label(self, text):
+        row = Gtk.ListBoxRow()
+        row.set_selectable(False)
+        row.set_activatable(False)
+        lbl = Gtk.Label(label=text)
+        lbl.get_style_context().add_class("lnc-section")
+        lbl.set_halign(Gtk.Align.START)
+        row.add(lbl)
+        self.list_box.add(row)
+
+    def _make_row(self, app, is_pinned):
         row = Gtk.ListBoxRow()
         row.set_selectable(False)
         row.set_activatable(False)
 
+        outer = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        outer.get_style_context().add_class("lnc-entry")
+        if is_pinned:
+            outer.get_style_context().add_class("pinned")
+
+        # Launch button (main area)
         btn = Gtk.Button()
         btn.get_style_context().add_class("lnc-btn")
         btn.set_relief(Gtk.ReliefStyle.NONE)
         btn.connect("clicked", lambda b, a=app: self._launch(a))
+        btn.set_hexpand(True)
 
         box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
         box.get_style_context().add_class("lnc-row")
 
-        # Icon
         icon_widget = self._get_icon(app["icon"])
         box.pack_start(icon_widget, False, False, 4)
 
-        # Name
         name_label = Gtk.Label(label=app["name"])
         name_label.get_style_context().add_class("lnc-name")
         name_label.set_halign(Gtk.Align.START)
         name_label.set_ellipsize(Pango.EllipsizeMode.END)
-        name_label.set_max_width_chars(35)
+        name_label.set_max_width_chars(30)
         box.pack_start(name_label, True, True, 0)
 
-        # Launch indicator
-        arrow = Gtk.Label(label="›")
-        arrow.get_style_context().add_class("lnc-arrow")
-        box.pack_end(arrow, False, False, 4)
-
         btn.add(box)
-        row.add(btn)
+        outer.pack_start(btn, True, True, 0)
+
+        # Pin button
+        pin_btn = Gtk.Button(label="󰤱" if is_pinned else "󰤰")
+        pin_btn.get_style_context().add_class("lnc-pin-active" if is_pinned else "lnc-pin")
+        pin_btn.set_relief(Gtk.ReliefStyle.NONE)
+        pin_btn.set_tooltip_text("Unpin" if is_pinned else "Pin")
+        pin_btn.connect("clicked", lambda b, a=app, p=is_pinned: self._on_pin(a, p))
+        outer.pack_end(pin_btn, False, False, 0)
+
+        row.add(outer)
         return row
 
+    def _on_pin(self, app, is_pinned):
+        if is_pinned:
+            self.pins.remove(app["file"])
+        else:
+            self.pins.append(app["file"])
+        save_pins(self.pins)
+        self._populate(self.search_entry.get_text())
+
     def _get_icon(self, icon_name):
-        """Try to load icon from theme, fallback to generic."""
         ICON_SIZE = 22
 
         if not icon_name:
@@ -213,7 +268,6 @@ class AppLauncher(Gtk.Window):
             label.get_style_context().add_class("lnc-icon-fallback")
             return label
 
-        # Absolute path — load and scale via pixbuf
         if os.path.isfile(icon_name):
             try:
                 from gi.repository import GdkPixbuf
@@ -226,7 +280,6 @@ class AppLauncher(Gtk.Window):
             except Exception:
                 pass
 
-        # Theme icon — load via pixbuf for exact size
         if self.icon_theme.has_icon(icon_name):
             try:
                 pixbuf = self.icon_theme.load_icon(
@@ -238,7 +291,6 @@ class AppLauncher(Gtk.Window):
             except Exception:
                 pass
 
-        # Fallback
         label = Gtk.Label(label="󰣆")
         label.get_style_context().add_class("lnc-icon-fallback")
         return label
@@ -254,12 +306,7 @@ class AppLauncher(Gtk.Window):
         )
 
     def _on_search_changed(self, entry):
-        query = entry.get_text().lower().strip()
-        if not query:
-            self._populate(self.apps)
-            return
-        filtered = [a for a in self.apps if query in a["search"]]
-        self._populate(filtered)
+        self._populate(entry.get_text())
 
     def _on_key(self, widget, event):
         if event.keyval == Gdk.KEY_Escape:
