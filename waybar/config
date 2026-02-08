@@ -88,15 +88,19 @@
     },
 
     "backlight": {
-        "format": "BRI {percent}%",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
         "on-scroll-up": "brightnessctl set 5%+",
         "on-scroll-down": "brightnessctl set 5%-",
         "tooltip": false
     },
 
     "pulseaudio": {
-        "format": "VOL {volume}%",
-        "format-muted": "VOL MUTE",
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 MUTE",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+",
         "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
@@ -113,9 +117,9 @@
     },
 
     "network": {
-        "format-wifi": "NET {signalStrength}%",
-        "format-ethernet": "NET UP",
-        "format-disconnected": "NET OFF",
+        "format-wifi": "󰖩 {signalStrength}%",
+        "format-ethernet": "󰈀 UP",
+        "format-disconnected": "󰖪 OFF",
         "tooltip-format-wifi": "{essid}\n{ipaddr}/{cidr}\n↑ {bandwidthUpBytes}  ↓ {bandwidthDownBytes}",
         "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
         "interval": 5,
@@ -129,14 +133,15 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "BAT {capacity}%",
-        "format-charging": "CHG {capacity}%",
-        "format-plugged": "AC {capacity}%",
-        "format-alt": "BAT {time}"
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["󰂎", "󰁻", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"]
     },
 
     "hyprland/language": {
-        "format": "[ {} ]",
+        "format": "󰌌 {}",
         "format-en": "EN",
         "format-ru": "RU",
         "keyboard-name": "at-translated-set-2-keyboard"

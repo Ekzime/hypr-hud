@@ -149,18 +149,19 @@ tooltip label {
 #backlight {
     color: @yellow;
     padding: 0 8px;
-    transition: all 0.3s ease;
+    animation: glow-yellow 3s ease-in-out infinite alternate;
 }
 
 #pulseaudio {
     color: @green;
     padding: 0 8px;
-    transition: all 0.3s ease;
+    animation: glow-green 2.5s ease-in-out infinite alternate;
 }
 
 #pulseaudio.muted {
     color: @fg-dim;
     text-decoration: line-through;
+    animation: none;
 }
 
 #bluetooth {
@@ -176,20 +177,21 @@ tooltip label {
 #network {
     color: @green;
     padding: 0 8px;
-    transition: all 0.3s ease;
+    animation: glow-green 4s ease-in-out infinite alternate;
 }
 
 #network.disconnected {
     color: @red;
+    animation: pulse 1s ease-in-out infinite alternate;
 }
 
 /* -- Language -- */
 #language {
     color: @orange;
-    padding: 0 6px;
+    padding: 0 8px;
     font-weight: bold;
-    font-size: 12px;
-    transition: all 0.3s ease;
+    font-size: 14px;
+    animation: glow-orange 3.5s ease-in-out infinite alternate;
 }
 
 /* -- Battery: color-coded by state -- */
@@ -202,6 +204,7 @@ tooltip label {
 
 #battery.charging {
     color: @accent;
+    animation: glow-cyan 1.5s ease-in-out infinite alternate;
 }
 
 #battery.warning:not(.charging) {
@@ -265,4 +268,24 @@ tooltip label {
 @keyframes pulse {
     from { opacity: 1; }
     to   { opacity: 0.3; }
+}
+
+@keyframes glow-yellow {
+    from { text-shadow: 0 0 2px alpha(@yellow, 0.1); }
+    to   { text-shadow: 0 0 8px alpha(@yellow, 0.6); }
+}
+
+@keyframes glow-green {
+    from { text-shadow: 0 0 2px alpha(@green, 0.1); }
+    to   { text-shadow: 0 0 8px alpha(@green, 0.6); }
+}
+
+@keyframes glow-orange {
+    from { text-shadow: 0 0 2px alpha(@orange, 0.1); }
+    to   { text-shadow: 0 0 8px alpha(@orange, 0.6); }
+}
+
+@keyframes glow-cyan {
+    from { text-shadow: 0 0 2px alpha(@accent, 0.2); }
+    to   { text-shadow: 0 0 12px alpha(@accent, 0.8); }
 }

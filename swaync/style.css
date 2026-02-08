@@ -1,0 +1,362 @@
+/* ========================================
+   T E C H  H U D  —  SwayNC Theme
+   Matches waybar sci-fi panel
+   ======================================== */
+
+@define-color bg        #0a0e14;
+@define-color bg-mod    #0d1117;
+@define-color bg-light  #1b2838;
+@define-color fg        #b0bec5;
+@define-color fg-dim    #455a64;
+@define-color accent    #00e5ff;
+@define-color green     #00e676;
+@define-color yellow    #ffd740;
+@define-color red       #ff1744;
+@define-color magenta   #d500f9;
+
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 14px;
+}
+
+/* ---- Control Center Panel ---- */
+
+.control-center {
+    background: alpha(@bg, 0.92);
+    border-radius: 0px;
+    border-left: 1px solid @bg-light;
+    border-bottom: 1px solid @bg-light;
+    box-shadow: -4px 0px 20px rgba(0, 0, 0, 0.7);
+    margin: 0px;
+    padding: 14px;
+}
+
+.control-center-list {
+    background: transparent;
+}
+
+.control-center-list-placeholder {
+    opacity: 0.4;
+    color: @fg-dim;
+    font-style: italic;
+}
+
+/* ---- Notification Rows ---- */
+
+.notification-row {
+    outline: none;
+    margin: 4px 0;
+}
+
+.notification-row:focus,
+.notification-row:hover {
+    background: alpha(@accent, 0.05);
+    border-radius: 0px;
+}
+
+/* ---- Individual Notification ---- */
+
+.notification {
+    background: @bg-mod;
+    border-radius: 0px;
+    border: 1px solid @bg-light;
+    border-left: 3px solid @accent;
+    margin: 4px 0;
+    padding: 0;
+    transition: all 0.2s ease;
+}
+
+.notification:hover {
+    border-left: 3px solid @accent;
+    box-shadow: -2px 0 10px alpha(@accent, 0.15);
+}
+
+.notification-content {
+    background: transparent;
+    padding: 10px 12px;
+}
+
+.notification-default-action {
+    background: transparent;
+    border-radius: 0px;
+}
+
+.notification-default-action:hover {
+    background: alpha(@accent, 0.06);
+}
+
+/* ---- Popup Notifications (floating) ---- */
+
+.floating-notifications {
+    background: transparent;
+}
+
+.floating-notifications .notification {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 1px alpha(@accent, 0.3);
+}
+
+/* ---- Close Button ---- */
+
+.close-button {
+    background: alpha(@red, 0.15);
+    color: @red;
+    text-shadow: none;
+    padding: 0;
+    border-radius: 0px;
+    margin-top: 8px;
+    margin-right: 8px;
+    min-width: 22px;
+    min-height: 22px;
+    border: 1px solid alpha(@red, 0.3);
+}
+
+.close-button:hover {
+    background: alpha(@red, 0.4);
+    color: @fg;
+}
+
+/* ---- Action Buttons ---- */
+
+.notification-action {
+    background: alpha(@accent, 0.1);
+    color: @accent;
+    border-radius: 0px;
+    margin: 4px 4px 8px 4px;
+    padding: 6px 12px;
+    border: 1px solid alpha(@accent, 0.25);
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.notification-action:hover {
+    background: alpha(@accent, 0.25);
+    border: 1px solid @accent;
+    box-shadow: 0 0 8px alpha(@accent, 0.2);
+}
+
+/* ---- Inline Reply ---- */
+
+.inline-reply {
+    background: @bg;
+    color: @fg;
+    caret-color: @accent;
+    border: 1px solid @bg-light;
+    border-radius: 0px;
+    padding: 8px;
+}
+
+.inline-reply:focus {
+    border: 1px solid @accent;
+    box-shadow: 0 0 6px alpha(@accent, 0.15);
+}
+
+/* ---- Text Styles ---- */
+
+.summary {
+    font-size: 14px;
+    font-weight: bold;
+    background: transparent;
+    color: @fg;
+    text-shadow: none;
+    letter-spacing: 0.3px;
+}
+
+.time {
+    font-size: 11px;
+    font-weight: normal;
+    background: transparent;
+    color: @fg-dim;
+    text-shadow: none;
+    font-style: italic;
+}
+
+.body {
+    font-size: 13px;
+    font-weight: normal;
+    background: transparent;
+    color: alpha(@fg, 0.8);
+    text-shadow: none;
+}
+
+.body-image {
+    margin-top: 6px;
+    background-color: @bg;
+    border-radius: 0px;
+    border: 1px solid @bg-light;
+}
+
+/* ---- Title Widget (header) ---- */
+
+.widget-title {
+    color: @accent;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 8px 4px;
+    letter-spacing: 2px;
+}
+
+.widget-title > button {
+    background: alpha(@red, 0.12);
+    color: @red;
+    border-radius: 0px;
+    border: 1px solid alpha(@red, 0.3);
+    padding: 4px 14px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.widget-title > button:hover {
+    background: alpha(@red, 0.3);
+    border: 1px solid @red;
+}
+
+/* ---- Clear All ---- */
+
+.control-center-clear-all {
+    background: alpha(@red, 0.12);
+    color: @red;
+    border-radius: 0px;
+    margin: 8px 4px;
+    border: 1px solid alpha(@red, 0.3);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.control-center-clear-all:hover {
+    background: alpha(@red, 0.3);
+    border: 1px solid @red;
+}
+
+/* ---- DnD Toggle ---- */
+
+.widget-dnd {
+    background: alpha(@bg-mod, 0.8);
+    color: @fg;
+    border-radius: 0px;
+    margin: 6px 4px;
+    padding: 8px;
+    border: 1px solid @bg-light;
+}
+
+.widget-dnd > switch {
+    background: @bg-light;
+    border-radius: 0px;
+    border: 1px solid @fg-dim;
+    min-height: 24px;
+}
+
+.widget-dnd > switch:checked {
+    background: alpha(@accent, 0.3);
+    border: 1px solid @accent;
+}
+
+.widget-dnd > switch slider {
+    background: @fg;
+    border-radius: 0px;
+    min-height: 20px;
+    min-width: 20px;
+}
+
+.widget-dnd > switch:checked slider {
+    background: @accent;
+}
+
+/* ---- Labels ---- */
+
+.widget-label {
+    margin: 4px;
+    color: @fg;
+}
+
+.widget-label > label {
+    font-size: 13px;
+    color: @fg-dim;
+}
+
+/* ---- MPRIS Widget ---- */
+
+.widget-mpris {
+    background: alpha(@bg-mod, 0.8);
+    border-radius: 0px;
+    margin: 6px 4px;
+    padding: 10px;
+    border: 1px solid @bg-light;
+    border-left: 3px solid @magenta;
+}
+
+.widget-mpris-player {
+    background: transparent;
+    padding: 6px;
+}
+
+.widget-mpris-title {
+    font-weight: bold;
+    font-size: 13px;
+    color: @fg;
+}
+
+.widget-mpris-subtitle {
+    font-size: 12px;
+    color: @fg-dim;
+}
+
+/* ---- Inhibitors ---- */
+
+.widget-inhibitors {
+    background: alpha(@bg-mod, 0.8);
+    border-radius: 0px;
+    margin: 6px 4px;
+    padding: 6px;
+    border: 1px solid @bg-light;
+}
+
+.widget-inhibitors > button {
+    background: alpha(@accent, 0.1);
+    color: @accent;
+    border-radius: 0px;
+    border: 1px solid alpha(@accent, 0.25);
+    margin: 3px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+.widget-inhibitors > button:hover {
+    background: alpha(@accent, 0.25);
+    border: 1px solid @accent;
+}
+
+/* ---- Progress Bars ---- */
+
+trough {
+    background: @bg-light;
+    border-radius: 0px;
+    min-height: 4px;
+}
+
+progressbar,
+progress {
+    background: @accent;
+    border-radius: 0px;
+    min-height: 4px;
+}
+
+/* ---- Urgency Levels ---- */
+
+.notification.low {
+    border-left: 3px solid @fg-dim;
+}
+
+.notification.normal {
+    border-left: 3px solid @accent;
+}
+
+.notification.critical {
+    border-left: 3px solid @red;
+    background: alpha(@red, 0.06);
+}
+
+.notification.critical .summary {
+    color: @red;
+}
