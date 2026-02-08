@@ -1,7 +1,7 @@
 {
     "layer": "top",
-    "position": "bottom",
-    "height": 38,
+    "position": "top",
+    "height": 46,
     "reload_style_on_change": true,
 
     "modules-left": [

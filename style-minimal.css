@@ -19,7 +19,7 @@
 /* -- Reset -- */
 * {
     font-family: "JetBrainsMono Nerd Font", "Noto Sans Mono", monospace;
-    font-size: 13.5px;
+    font-size: 15px;
     border: none;
     min-height: 0;
 }
@@ -28,7 +28,7 @@
 window#waybar {
     background: @bg;
     color: @fg;
-    border-top: 1px solid @border;
+    border-bottom: 1px solid @border;
 }
 
 tooltip {
@@ -49,8 +49,8 @@ tooltip label {
 
 #custom-logo {
     color: @accent;
-    font-size: 16px;
-    padding: 0 16px 0 14px;
+    font-size: 18px;
+    padding: 0 18px 0 16px;
     letter-spacing: 2px;
 }
 
@@ -99,7 +99,7 @@ tooltip label {
 
 #clock {
     color: @fg;
-    font-size: 14px;
+    font-size: 15px;
     letter-spacing: 1.5px;
     padding: 0 20px;
     transition: all 0.3s ease;
